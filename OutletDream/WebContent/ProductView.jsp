@@ -19,185 +19,221 @@
 
 <head>
     <title>CatalogoOutletDream&Passion</title>
-
     <style>
-    
-    footer {
-            background-color: #21233d;
-            color: white;
-           
-           
+        /* Reset CSS */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+      background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+background-color: #21233d;
             padding: 20px;
-           
-            bottom: 0;
-            width: 100%;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-        }
-
-        header {
-            background-color: #21233d;
-            padding: 20px;
             color: white;
             text-align: center;
-        }
+}
 
-        nav ul {
-            padding: 0;
-            list-style: none;
-            text-align: center;
-            margin-top: 20px;
-        }
+.logo {
+    font-size: 24px;
+}
 
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
+nav ul {
+    list-style: none;
+}
 
-        nav ul li a {
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.products {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.product {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.product img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #ddd;
+}
+
+/* Image Style */
+td:first-child {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Action Links */
+td:last-child a {
+    display: block;
+    margin-bottom: 5px;
+    color: blue;
+    text-decoration: none;
+}
+
+td:last-child a:hover {
+    text-decoration: underline;
+}
+
+
+.insert {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.insert form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.insert label,
+.insert input,
+.insert textarea,
+.insert button {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.insert input,
+.insert textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.insert button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #21233d;
             color: white;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
 
-        nav ul li a:hover {
-            background-color: #555;
-        }
+    text-align: center;
+    padding: 20px 0;
+}
 
-        h2 {
-            font-family: "Lucida Console", "Courier New", monospace;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border:0;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        textarea {
-            width: calc(100% - 22px);
-            padding: 5px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        input[type="submit"],
-        input[type="reset"] {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        input[type="submit"]:hover,
-        input[type="reset"]:hover {
-            background-color: #45a049;
-        }
-
-
-       
     </style>
-
 </head>
-
 <body>
-
     <header>
-        <h1>Outlet Dream&Passion</h1>
-        <nav>
-            <ul>
-                <li><a href="product">Home</a></li>
-                <li><a href="#">Offerte</a></li>
-                <li><a href="#">Search</a></li>
-            </ul><br>
-           <ul>
-                <li><a href="product?action=filtra&marca=gucci">Gucci</a></li>
-                <li><a href="product?action=filtra&marca=nike">Nike</a></li>
-                <li><a href="product?action=filtra&marca=dior">Dior</a></li>
-            </ul>
-        </nav>
-
+        <div class="container">
+            <h1 class="logo">Outlet Dream&Passion</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Offerte</a></li>
+                    <li><a href="#">Cerca</a></li>
+                  
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <h2>Prodotti Presenti Nel Catalogo</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Immagine</th>
-                <th>Nome</th>
-                <th>Marca</th>
-                <th>Descrizione</th>
-                <th>Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            <%
-                if (products != null && products.size() != 0) {
-                    Iterator<?> it = products.iterator();
-                    while (it.hasNext()) {
-                        ProductBean bean = (ProductBean) it.next();
-            %>
-            <tr>
-                <td style="background-image: url('<%=bean.getImg()%>'); background-size: cover; width: 100px; height: 100px;"></td>
-                <td><%=bean.getName()%></td>
-                <td><%=bean.getMarca()%></td>
-                <td><%=bean.getDescription()%></td>
-                <td>
-                    <a href="product?action=delete&id=<%=bean.getCode()%>">Cancella Prodotto</a><br>
-                    <a href="product?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
-                </td>
-            </tr>
-            <%
-                    }
-                } else {
-            %>
+    <section class="products">
+        <div class="container">
+            <h2>Prodotti in evidenza</h2>
+            
+            <table border="1">
+    <thead>
+        <tr>
+            <th>Immagine</th>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Descrizione</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (products != null && products.size() != 0) { %>
+            <% Iterator<?> it = products.iterator(); %>
+            <% while (it.hasNext()) { %>
+                <% ProductBean bean = (ProductBean) it.next(); %>
+                <tr>
+                    <td style="background-image: url('<%=bean.getImg()%>'); background-size: cover; width: 100px; height: 100px;"></td>
+                    <td><%=bean.getName()%></td>
+                    <td><%=bean.getMarca()%></td>
+                    <td><%=bean.getDescription()%></td>
+                    <td>
+                        <a href="product?action=delete&id=<%=bean.getCode()%>">Cancella Prodotto</a><br>
+                        <a href="product?action=addC&id=<%=bean.getCode()%>">Aggiungi al carrello</a>
+                    </td>
+                </tr>
+            <% } %>
+        <% } else { %>
             <tr>
                 <td colspan="5">No products available</td>
             </tr>
-            <%
-                }
-            %>
-        </tbody>
-    </table>
+        <% } %>
+    </tbody>
+</table>
 
-    <h2>Inserisci i dati di un nuovo prodotto</h2>
+        </div>
+    </section>
+
+    <section class="insert">
+        <div class="container">
+            <h2>Inserisci i dati di un nuovo prodotto</h2>
     <form action="product" method="post">
         <input type="hidden" name="action" value="insert">
 
@@ -217,18 +253,21 @@
         <input name="quantity" type="number" min="1" value="1" required><br>
 
         <label for="image">Immagine:</label><br>
-        <input name="image" type="text" maxlength="512" placeholder="percorso immagine"><br>
+        <input name="image" type="file"  ><br>
 
         <input type="submit" value="Aggiungi il prodotto"><input type="reset" value="Resetta i campi">
     </form>
 
-    
-    
-	<br><br>
-	<footer>Sito sviluppato da:Dream Team (Michele Di Meo, Fabrizio Cozzolino, Antonio Rapa)
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Sito sviluppato da:Dream Team (Michele Di Meo, Fabrizio Cozzolino, Antonio Rapa)
 		<br><br>Immagini date in gentile concessioni dai marchi in collaborazione quali:
 		Gucci, Prada, Nike, Dior
-	</footer>
+</p>
+        </div>
+    </footer>
 </body>
-
 </html>
