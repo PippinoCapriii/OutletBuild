@@ -11,7 +11,7 @@ CREATE TABLE product (
   price int default 0,
   quantity int default 0,
   marca char(20) not null,
-  image VARCHAR(20)
+  image VARCHAR(512)
 );
 
 INSERT INTO product values (1,"felpa","falsa",20,5,"gucci","");
