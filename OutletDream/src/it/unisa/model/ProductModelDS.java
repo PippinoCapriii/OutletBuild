@@ -1,0 +1,177 @@
+package it.unisa.model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class ProductModelDS implements ProductModel {
+  private static DataSource ds;
+  
+  private static final String TABLE_NAME = "product";
+  
+  static {
+    try {
+      Context initCtx = new InitialContext();
+      Context envCtx = (Context)initCtx.lookup("java:comp/env");
+      ds = (DataSource)envCtx.lookup("jdbc/storage");
+    } catch (NamingException e) {
+      System.out.println("Error:" + e.getMessage());
+    } 
+  }
+  
+  public synchronized void doSave(ProductBean product) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    String insertSQL = "INSERT INTO product (NAME, DESCRIPTION, PRICE, QUANTITY, MARCA, IMAGE) VALUES (?, ?, ?, ?, ?, ?)";
+    try {
+      connection = ds.getConnection();
+      preparedStatement = connection.prepareStatement(insertSQL);
+      preparedStatement.setString(1, product.getName());
+      preparedStatement.setString(2, product.getDescription());
+      preparedStatement.setInt(3, product.getPrice());
+      preparedStatement.setInt(4, product.getQuantity());
+      preparedStatement.setString(5, product.getMarca());
+      preparedStatement.setString(6, product.getImg());
+      preparedStatement.executeUpdate();
+      connection.commit();
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close(); 
+      } finally {
+        if (connection != null)
+          connection.close(); 
+      } 
+    } 
+  }
+  
+  public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ProductBean bean = new ProductBean();
+    String selectSQL = "SELECT * FROM product WHERE CODE = ?";
+    try {
+      connection = ds.getConnection();
+      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement.setInt(1, code);
+      ResultSet rs = preparedStatement.executeQuery();
+      while (rs.next()) {
+        bean.setCode(rs.getInt("CODE"));
+        bean.setName(rs.getString("NAME"));
+        bean.setDescription(rs.getString("DESCRIPTION"));
+        bean.setPrice(rs.getInt("PRICE"));
+        bean.setQuantity(rs.getInt("QUANTITY"));
+        bean.setMarca(rs.getString("MARCA"));
+        bean.setImg(rs.getString("IMAGE"));
+      } 
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close(); 
+      } finally {
+        if (connection != null)
+          connection.close(); 
+      } 
+    } 
+    return bean;
+  }
+  
+  public synchronized boolean doDelete(int code) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    int result = 0;
+    String deleteSQL = "DELETE FROM product WHERE CODE = ?";
+    try {
+      connection = ds.getConnection();
+      preparedStatement = connection.prepareStatement(deleteSQL);
+      preparedStatement.setInt(1, code);
+      result = preparedStatement.executeUpdate();
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close(); 
+      } finally {
+        if (connection != null)
+          connection.close(); 
+      } 
+    } 
+    return (result != 0);
+  }
+  
+  public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Collection<ProductBean> products = new LinkedList<>();
+    String selectSQL = "SELECT * FROM product";
+    if (order != null && !order.equals(""))
+      selectSQL = selectSQL + " ORDER BY " + selectSQL; 
+    try {
+      connection = ds.getConnection();
+      preparedStatement = connection.prepareStatement(selectSQL);
+      ResultSet rs = preparedStatement.executeQuery();
+      while (rs.next()) {
+        ProductBean bean = new ProductBean();
+        bean.setCode(rs.getInt("CODE"));
+        bean.setName(rs.getString("NAME"));
+        bean.setDescription(rs.getString("DESCRIPTION"));
+        bean.setPrice(rs.getInt("PRICE"));
+        bean.setQuantity(rs.getInt("QUANTITY"));
+        bean.setMarca(rs.getString("MARCA"));
+        bean.setImg(rs.getString("IMAGE"));
+        products.add(bean);
+      } 
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close(); 
+      } finally {
+        if (connection != null)
+          connection.close(); 
+      } 
+    } 
+    return products;
+  }
+  
+  public synchronized Collection<ProductBean> filtra(String Marca) throws SQLException {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ArrayList<ProductBean> products = new ArrayList<>();
+	    String selectSQL = "SELECT * FROM product WHERE MARCA=?";
+	  
+	    try {
+	      connection = ds.getConnection();
+	      preparedStatement = connection.prepareStatement(selectSQL);
+	      preparedStatement.setString(1, Marca);
+	      ResultSet rs = preparedStatement.executeQuery();
+	      while (rs.next()) {
+	        ProductBean bean = new ProductBean();
+	        bean.setCode(rs.getInt("CODE"));
+	        bean.setName(rs.getString("NAME"));
+	        bean.setDescription(rs.getString("DESCRIPTION"));
+	        bean.setPrice(rs.getInt("PRICE"));
+	        bean.setQuantity(rs.getInt("QUANTITY"));
+	        bean.setMarca(rs.getString("marca"));
+	        bean.setImg(rs.getString("IMAGE"));
+	        products.add(bean);
+	      } 
+	    } finally {
+	      try {
+	        if (preparedStatement != null)
+	          preparedStatement.close(); 
+	      } finally {
+	        if (connection != null)
+	          connection.close(); 
+	      } 
+	    } 
+	    return products;
+	  }
+	  
+	  }
