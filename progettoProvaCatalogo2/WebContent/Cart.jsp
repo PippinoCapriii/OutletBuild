@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Il tuo carrello</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <header>
@@ -25,37 +25,53 @@
     <section class="cart">
         <div class="container">
             <h2>Il tuo carrello</h2>
-            <table border="1">
+            <table >
                 <thead>
                     <tr>
-                        <th>Nome prodotto</th>
-                        <th>Prezzo</th>
-                        <th></th>
+                         <th bgcolor="#21233d" style="color: white;">Immagine</th>
+                <th bgcolor="#21233d" style="color: white;">descrizione</th>
+                <th bgcolor="#21233d" style="color: white;">azioni</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% 
-                   	
+                  
+                   
                         Cart cart = (Cart) session.getAttribute("cart");
+                       double somma=0.0;
+                  
                         if (cart != null && !cart.getProducts().isEmpty()) {
                             for (ProductBean product : cart.getProducts()) {
+                            	somma+=product.getPrice();
                     %>
                     <tr>
                         <td><%= product.getName() %></td>
                         <td>€<%= product.getPrice() %></td>
-                       
                         <td><a href="product?action=deleteC&id=<%= product.getCode() %>">Rimuovi dal carrello</a></td>
                     </tr>
+                     
+                      
+                   
                     <% 
                             }
                         } else { 
                     %>
                     <tr>
                         <td colspan="5">Il carrello è vuoto</td>
+                      
                     </tr>
+                      
                     <% } %>
+                  
                 </tbody>
             </table>
+            <%
+                if (cart != null && !cart.getProducts().isEmpty()) {
+            %>
+            <h3>Totale: €<%= somma %></h3>
+            <%
+                }
+            %>
         </div>
     </section>
 

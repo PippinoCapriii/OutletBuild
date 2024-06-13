@@ -7,7 +7,6 @@ public class ProductBean implements Serializable {
   
   int code = -1;
   
-  int count= 1;
   
   String name = "";
   
@@ -77,14 +76,7 @@ public class ProductBean implements Serializable {
     this.img = img;
   }
   
-  public int getCount() {
-	    return this.count;
-	  }
-	  
-	  public void setCount(int count) {
-	    this.count = count;
-	  }
-  
+
  
 	  
   public String toString() {

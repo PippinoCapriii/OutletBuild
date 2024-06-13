@@ -1,3 +1,5 @@
+package it.unisa.control;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import it.unisa.model.Cart;
 import it.unisa.model.ProductBean;
 
-@WebServlet("/product")
+@WebServlet("/product2")
 public class CartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +24,7 @@ public class CartServlet extends HttpServlet {
      
             response.sendRedirect("./Cart.jsp");
         }
+        
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

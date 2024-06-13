@@ -1,12 +1,10 @@
  package it.unisa.model;
 
   import java.sql.Connection;
-  import java.io.*;
   import java.sql.PreparedStatement;
   import java.sql.ResultSet;
   import java.sql.SQLException;
   import java.util.Collection;
-  import java.util.ArrayList;
   import java.util.LinkedList;
   import javax.naming.Context;
   import javax.naming.InitialContext;
@@ -143,39 +141,41 @@
       return products;
     }
     
-    public synchronized Collection<ProductBean> filtra(String marca) throws SQLException {
-  	    Connection connection = null;
-  	    PreparedStatement preparedStatement = null;
-  	    ArrayList<ProductBean> products = new ArrayList<>();
-  	    String selectSQL = "select * from product where marca=?";
-  	    System.out.println(marca);
-  	    try {
-  	      connection = ds.getConnection();
-  	      preparedStatement = connection.prepareStatement(selectSQL);
-  	      preparedStatement.setString(1, marca);
-  	    
-  	      ResultSet rs = preparedStatement.executeQuery();
-  	      while (rs.next()) {
-  	        ProductBean bean = new ProductBean();
-  	        bean.setCode(rs.getInt("CODE"));
-  	        bean.setName(rs.getString("NAME"));
-  	        bean.setDescription(rs.getString("DESCRIPTION"));
-  	        bean.setPrice(rs.getInt("PRICE"));
-  	        bean.setQuantity(rs.getInt("QUANTITY"));
-  	        bean.setMarca(rs.getString("MARCA"));
-  	        bean.setImg(rs.getString("IMAGE"));
-  	        products.add(bean);
-  	      } 
-  	    } finally {
-  	      try {
-  	        if (preparedStatement != null)
-  	          preparedStatement.close(); 
-  	      } finally {
-  	        if (connection != null)
-  	          connection.close(); 
-  	      } 
-  	    } 
-  	    return products;
-  	  }
+    public synchronized Collection <ProductBean> filtra(String marca) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Collection<ProductBean> products = new LinkedList<>();
+        
+        String selectSQL = "SELECT * FROM "+TABLE_NAME+" WHERE marca =? ";
+       
+        try {
+          connection = ds.getConnection();
+          preparedStatement = connection.prepareStatement(selectSQL);
+          preparedStatement.setString(1, marca);
+          ResultSet rs = preparedStatement.executeQuery();
+          while (rs.next()) {
+          ProductBean bean = new ProductBean();
+            bean.setCode(rs.getInt("CODE"));
+            bean.setName(rs.getString("NAME"));
+            bean.setDescription(rs.getString("DESCRIPTION"));
+            bean.setPrice(rs.getInt("PRICE"));
+            bean.setQuantity(rs.getInt("QUANTITY"));
+            bean.setMarca(rs.getString("MARCA"));
+            bean.setImg(rs.getString("IMAGE"));
+            products.add(bean);
+          } 
+        } finally {
+          try {
+            if (preparedStatement != null)
+              preparedStatement.close(); 
+          } finally {
+            if (connection != null)
+              connection.close(); 
+          } 
+        } 
+       return products;
+        }
+      }
+  
   	  
-  	  }
+  	  

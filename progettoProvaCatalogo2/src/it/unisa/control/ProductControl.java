@@ -3,9 +3,12 @@ package it.unisa.control;
 import it.unisa.model.Cart;
 import it.unisa.model.ProductBean;
 import it.unisa.model.ProductModel;
-import it.unisa.model.ProductModelDS;
+import it.unisa.model.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -20,8 +23,12 @@ public class ProductControl extends HttpServlet {
   static ProductModel model = (ProductModel)new ProductModelDS();
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 
+	  System.out.println("PROBLEMONI");
+	  
 	  String action = request.getParameter("action");
-      
+	  String marca = request.getParameter("marca");
+	  
       if(action != null && action.equals("delete")) {
           
           String productId = request.getParameter("id");
@@ -34,39 +41,26 @@ public class ProductControl extends HttpServlet {
       }
     try {
       if (action != null)
-        if (action.equalsIgnoreCase("addC")) {
-          int id = Integer.parseInt(request.getParameter("id"));
-          cart.addProduct(model.doRetrieveByKey(id));
-          
-        } else if (action.equalsIgnoreCase("deleteC")) {
-          int id = Integer.parseInt(request.getParameter("id"));
-          cart.deleteProduct(model.doRetrieveByKey(id));
-          
-        } else if (action.equalsIgnoreCase("read")) {
-          int id = Integer.parseInt(request.getParameter("id"));
-          request.removeAttribute("product");
-          request.setAttribute("product", model.doRetrieveByKey(id));
-          
-        } else if (action.equalsIgnoreCase("delete")) {
-          int id = Integer.parseInt(request.getParameter("id"));
-          model.doDelete(id);
-        }  
-        	else if (action.equalsIgnoreCase("filtra")) {
-        	    String marca = request.getParameter("marca");
-        	    System.out.println(marca);
-        	    try {
-        	        Collection<ProductBean> products = null;
-        	        if (marca != null && !marca.isEmpty()) {
-        	            products = model.filtra(marca);
-        	        }
-        	        request.setAttribute("products", products);
-        	        request.getRequestDispatcher("/WEB-INF/ProductView.jsp").forward(request, response);
-        	    } catch (SQLException e) {
-        	        e.printStackTrace();
-        	        response.sendRedirect(request.getContextPath() + "/error.jsp");
-        	    }
-        	}
-        	
+    	  if (action.equalsIgnoreCase("addC")) {
+              int id = Integer.parseInt(request.getParameter("id"));
+              cart.addProduct(model.doRetrieveByKey(id));
+              
+            } else if (action.equalsIgnoreCase("deleteC")) {
+              int id = Integer.parseInt(request.getParameter("id"));
+              cart.deleteProduct(model.doRetrieveByKey(id));
+              
+            } else if (action.equalsIgnoreCase("read")) {
+              int id = Integer.parseInt(request.getParameter("id"));
+              request.removeAttribute("product");
+              request.setAttribute("product", model.doRetrieveByKey(id));
+              
+            } else if (action.equalsIgnoreCase("delete")) {
+              int id = Integer.parseInt(request.getParameter("id"));
+              model.doDelete(id);
+            }  
+         
+        	    
+      
         else if (action.equalsIgnoreCase("insert")) {
           String name = request.getParameter("name");
           String description = request.getParameter("description");
@@ -81,7 +75,6 @@ public class ProductControl extends HttpServlet {
           bean.setQuantity(quantity);
           bean.setMarca(marca);
           bean.setImg(img);
-          bean.setCount(1);
           model.doSave(bean);
         }  
     } catch (SQLException e) {
@@ -89,15 +82,10 @@ public class ProductControl extends HttpServlet {
     } 
     request.getSession().setAttribute("cart", cart);
     request.setAttribute("cart", cart);
-    String marca = request.getParameter("marca");
-    try {
-      request.removeAttribute("products");
-      request.setAttribute("products", model.filtra(marca));
-    } catch (SQLException e) {
-      System.out.println("Error:" + e.getMessage());
-    } 
-    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+    
+    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Catalogo.jsp");
     dispatcher.forward((ServletRequest)request, (ServletResponse)response);
+    
   }
  
 

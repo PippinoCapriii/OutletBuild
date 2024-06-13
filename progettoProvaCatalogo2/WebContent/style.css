@@ -1,9 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" errorPage="error.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login - Outlet Dream&Passion</title>
-    <style>
+@charset "ISO-8859-1";
+  
         footer {
             background-color: #21233d;
             color: white;
@@ -49,14 +45,62 @@
         }
 
         h2 {
-            font-family: "Lucida Console", "Courier New", monospace;
+            font-family: arial black, Helvetica, sans-serif;
             text-align: center;
             margin-top: 30px;
         }
+         h6 {
+         color: #21233d;
+        }
 
+        table {
+            width: auto;
+            border-collapse: collapse;
+            border: 0;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 2px solid #21233d;
+            padding: 8px;
+            text-align: left;
+            white-space: nowrap; 
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+         p{
+         background-color: gray;
+         margin: 25px;
+         }
+      .classe1{
+         background-color:#E6E6FA;
+         margin: 25px;
+         
+      
+            display: flex;
+            
+            margin: 20px;
+        }
+      
+        .classe1 img {
+            margin-right: 20px; /* Spazio tra immagine e testo */
+         
+            height: auto; /* Mantiene le proporzioni dell'immagine */
+        }
+        .classe1 .text {
+             
+            font-family: courier , Helvetica, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+            font-size:130%;
+            font-weight:bold;
+            
+        }
+        
         form {
             margin-top: 20px;
-            text-align: center;
         }
 
         label {
@@ -66,15 +110,17 @@
         }
 
         input[type="text"],
-        input[type="password"] {
+        input[type="number"],
+        textarea {
             width: calc(100% - 22px);
-            padding: 10px;
+            padding: 5px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 3px;
         }
 
-        input[type="submit"] {
+        input[type="submit"],
+        input[type="reset"] {
             background-color: #4caf50;
             color: white;
             border: none;
@@ -88,41 +134,8 @@
             margin-right: 10px;
         }
 
-        input[type="submit"]:hover {
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
             background-color: #45a049;
         }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Outlet Dream&Passion</h1>
-        <nav>
-            <ul>
-                <li><a href="product">Home</a></li>
-                <li><a href="#">Offerte</a></li>
-                <li><a href="#">Search</a></li>
-                <align center=right> <li><a href="Login.jsp" class="login">Accedi</a></li></center>
-                <align center=right> <li><a href="Cart.jsp" class="cart">Il tuo carrello</a></li></center>
-            </ul>
-          
-        </nav>
-    </header>
-
-    <h2>Login</h2>
-    <form action="login" method="post">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required>
-
-        <input type="submit" value="Login">
-    </form>
-	<center> <p> Non sei Registrato? Registrati <a href="Register.jsp" class = "register"> qui</a>.</p></center>
-    <br><br>
-    <footer>
-        Sito sviluppato da: Dream Team (Michele Di Meo, Fabrizio Cozzolino, Antonio Rapa)
-        <br><br>Immagini date in gentile concessione dai marchi in collaborazione quali: Gucci, Prada, Nike, Dior
-    </footer>
-</body>
-</html>
+    

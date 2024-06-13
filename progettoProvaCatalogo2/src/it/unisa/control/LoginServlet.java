@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import it.unisa.model.*;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -30,3 +31,4 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
+

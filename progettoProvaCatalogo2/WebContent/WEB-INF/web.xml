@@ -21,4 +21,13 @@
 		<servlet-name>ProductControl</servlet-name>
 		<url-pattern>/product</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Filtraggio</servlet-name>
+		<servlet-class>it.unisa.control.Filtraggio</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Filtraggio</servlet-name>
+		<url-pattern>/Filtraggio</url-pattern>
+	</servlet-mapping>
+		
 </web-app>

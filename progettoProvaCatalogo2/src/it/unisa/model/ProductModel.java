@@ -12,5 +12,5 @@ public interface ProductModel {
 	
 	public Collection<ProductBean> doRetrieveAll(String order) throws SQLException;
 	
-	public Collection <ProductBean>filtra(String Marca)throws SQLException;
+	public  Collection <ProductBean> filtra(String marca)throws SQLException;
 }
