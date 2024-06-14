@@ -7,7 +7,7 @@
 <html>
 <head>
     <title>CatalogoOutletDream&Passion</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="styles.css" type="text/css">
 </head>
 <body>
     <header>
@@ -20,6 +20,7 @@
                 <li><a href="#">Search</a></li>
                 <li><a href="Cart.jsp" class = "cart"><img src="https://webstockreview.net/images/shopping-cart-icon-png-8.png"  width="35" height="35"></a></li>
                 <li><a href="Login.jsp" class = "login"><img src="https://icon-library.com/images/login-icon-png/login-icon-png-19.jpg"  width="35" height="35"></a></li>
+                <li><a href="Register.jsp" class = "Register"><img src="https://icon-library.com/images/login-icon-png/login-icon-png-19.jpg"  width="35" height="35"></a></li>
                </align>
                </nav>
                </center>
@@ -28,9 +29,9 @@
             <nav>
            <ul>
           <li><a href="Filtraggio?marca=Gucci"><img src="http://pluspng.com/img-png/gucci-logo-png-gucci-logo-png-transparent-background-download-1500.png" width="35" height="35"> </a></li>
-<li><a href="Filtraggio?action=filtraggio&marca=Dior">Dior</a></li>
+<li><a href="Filtraggio?marca=Dior">Dior</a></li>
 
-<li><a href="Filtraggio?action=filtraggio&marca=Nike">Nike</a></li>
+<li><a href="Filtraggio?marca=Nike">Nike</a></li>
 			
        </ul> 
         

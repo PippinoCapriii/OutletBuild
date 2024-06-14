@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.*;
 
-import it.unisa.model.ProductBean;
-import it.unisa.model.ProductModel;
 import it.unisa.model.*;
 
 
@@ -24,7 +22,7 @@ public class Filtraggio extends HttpServlet {
        
    
    
-    static ProductModel model = new ProductModelDS();
+    static ProductDAO prodDAO = new ProductDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
@@ -33,7 +31,7 @@ public class Filtraggio extends HttpServlet {
      	    
      	    Collection<ProductBean> filteredProducts = null;
 			try {
-				filteredProducts = model.filtra(marca);
+				filteredProducts = prodDAO.filtra(marca);
 			} catch (SQLException e) {
 				 System.out.println("Error:" + e.getMessage());
 			}
@@ -51,5 +49,4 @@ public class Filtraggio extends HttpServlet {
 	
 	 
 	}
-
 

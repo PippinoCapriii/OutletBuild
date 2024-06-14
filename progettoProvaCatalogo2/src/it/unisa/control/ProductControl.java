@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ProductControl extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
-  static ProductModel model = (ProductModel)new ProductModelDS();
+  static ProductModel model = (ProductModel)new ProductDAOInterfaccia();
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 
